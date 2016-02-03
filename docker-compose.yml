@@ -1,0 +1,48 @@
+# mkdir -p /opt/docker_containers/elasticsearch/config
+# mkdir -p /opt/docker_containers/elasticsearch/data
+# mkdir -p /opt/docker_containers/kibana/config
+# mkdir -p /opt/docker_containers/fluentd/logs
+# mkdir -p /opt/docker_containers/fluentd/conf
+# mkdir -p /opt/docker_containers/logstash/config
+# chmod -R 777 /opt/docker_containers/elasticsearch
+
+elasticsearch:
+  image: elasticsearch:latest
+  command: elasticsearch -Des.network.host=0.0.0.0
+#  ports:
+#    - "9200:9200"
+#    - "9300:9300"
+  volumes:
+    - /opt/docker_containers/elasticsearch/config:/usr/share/elasticsearch/config
+    - /opt/docker_containers/elasticsearch/data:/usr/share/elasticsearch/data
+
+logstash:
+  image: logstash:latest
+  command: logstash -f /etc/logstash/conf.d/logstash.conf
+  volumes:
+    - /opt/docker_containers/logstash/config:/etc/logstash/conf.d
+#  ports:
+#    - "5000:5000"
+  links:
+    - elasticsearch
+  environment:
+    - LS_HEAP_SIZE=2048m
+
+kibana:
+  image: kibana:latest
+  volumes:
+    - /opt/docker_containers/kibana/config:/opt/kibana/config
+  ports:
+    - "5601:5601"
+  links:
+    - elasticsearch
+
+fluentd:
+  image: fluent/fluentd
+  volumes:
+    - /opt/docker_containers/fluentd/logs:/fluentd/log
+    - /opt/docker_containers/fluentd/conf:/fluentd/etc
+  ports:
+    - "24224:24224"
+  links:
+    - elasticsearch
