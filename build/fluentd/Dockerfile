@@ -13,5 +13,12 @@ RUN fluent-gem install fluent-plugin-hostname
 RUN fluent-gem install fluent-plugin-grok-parser
 RUN fluent-gem install fluent-plugin-suppress
 RUN fluent-gem install fluent-plugin-record-reformer
+RUN fluent-gem install fluent-plugin-mail
+RUN fluent-gem install fluent-plugin-elasticsearch
+RUN fluent-gem install fluent-plugin-multi-format-parser
+RUN fluent-gem install fluent-plugin-numeric-counter
+RUN fluent-gem install fluent-plugin-split
+RUN fluent-gem install fluent-plugin-rewrite
+RUN fluent-gem install fluent-plugin-resolv
 EXPOSE 24284
 CMD fluentd -c /fluentd/etc/$FLUENTD_CONF -p /fluentd/plugins $FLUENTD_OPT
