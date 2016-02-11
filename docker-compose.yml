@@ -16,33 +16,37 @@ elasticsearch:
     - /opt/docker_containers/elasticsearch/config:/usr/share/elasticsearch/config
     - /opt/docker_containers/elasticsearch/data:/usr/share/elasticsearch/data
 
-logstash:
-  image: logstash:latest
-  command: logstash -f /etc/logstash/conf.d/logstash.conf
-  volumes:
-    - /opt/docker_containers/logstash/config:/etc/logstash/conf.d
-#  ports:
-#    - "5000:5000"
-  links:
-    - elasticsearch
-  environment:
-    - LS_HEAP_SIZE=2048m
+#logstash:
+#  image: logstash:latest
+#  command: logstash -f /etc/logstash/conf.d/logstash.conf
+#  volumes:
+#    - /opt/docker_containers/logstash/config:/etc/logstash/conf.d
+##  ports:
+##    - "5000:5000"
+#  links:
+#    - elasticsearch
+#  environment:
+#    - LS_HEAP_SIZE=2048m
 
 kibana:
   image: kibana:latest
-  volumes:
-    - /opt/docker_containers/kibana/config:/opt/kibana/config
+#  volumes:
+#    - /opt/docker_containers/kibana/config:/opt/kibana/config
   ports:
     - "5601:5601"
+  environment:
+    - ELASTICSEARCH_URL=http://elasticsearch:9200
   links:
     - elasticsearch
 
 fluentd:
-  image: fluent/fluentd
+  build: build/fluentd/
+  cap_add:
+    - NET_BIND_SERVICE
   volumes:
     - /opt/docker_containers/fluentd/logs:/fluentd/log
     - /opt/docker_containers/fluentd/conf:/fluentd/etc
   ports:
-    - "24224:24224"
+    - "514:514/udp"
   links:
     - elasticsearch
