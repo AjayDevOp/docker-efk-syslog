@@ -13,8 +13,8 @@ elasticsearch:
 #    - "9200:9200"
 #    - "9300:9300"
   volumes:
-    - /opt/docker_containers/elasticsearch/config:/usr/share/elasticsearch/config
-    - /opt/docker_containers/elasticsearch/data:/usr/share/elasticsearch/data
+    - ./elasticsearch/config:/usr/share/elasticsearch/config
+    - ./elasticsearch/data:/usr/share/elasticsearch/data
 
 #logstash:
 #  image: logstash:latest
@@ -46,8 +46,8 @@ fluentd:
 #    - NET_ADMIN
 #    - NET_RAW
   volumes:
-    - /opt/docker_containers/fluentd/logs:/fluentd/log
-    - /opt/docker_containers/fluentd/conf:/fluentd/etc
+    - ./fluentd/logs:/fluentd/log
+    - ./fluentd/conf:/fluentd/etc
   ports:
     - "514:514/udp"
   links:
