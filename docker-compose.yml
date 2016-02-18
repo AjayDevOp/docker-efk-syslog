@@ -8,6 +8,7 @@
 
 elasticsearch:
   image: elasticsearch:latest
+  restart: always
   command: elasticsearch -Des.network.host=0.0.0.0
   ports:
     - "9200:9200"
@@ -29,6 +30,7 @@ elasticsearch:
 
 kibana:
   image: kibana:latest
+  restart: always
 #  volumes:
 #    - /opt/docker_containers/kibana/config:/opt/kibana/config
   ports:
@@ -40,6 +42,7 @@ kibana:
 
 fluentd:
   build: build/fluentd/
+  restart: always
   cap_add:
     - NET_BIND_SERVICE
   volumes:
