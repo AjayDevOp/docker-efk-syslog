@@ -16,18 +16,6 @@ elasticsearch:
     - ./elasticsearch/config:/usr/share/elasticsearch/config
     - ./elasticsearch/data:/usr/share/elasticsearch/data
 
-#logstash:
-#  image: logstash:latest
-#  command: logstash -f /etc/logstash/conf.d/logstash.conf
-#  volumes:
-#    - /opt/docker_containers/logstash/config:/etc/logstash/conf.d
-##  ports:
-##    - "5000:5000"
-#  links:
-#    - elasticsearch
-#  environment:
-#    - LS_HEAP_SIZE=2048m
-
 kibana:
   image: kibana:latest
   restart: always
@@ -52,3 +40,15 @@ fluentd:
     - "514:514/udp"
   links:
     - elasticsearch
+
+#logstash:
+#  image: logstash:latest
+#  command: logstash -f /etc/logstash/conf.d/logstash.conf
+#  volumes:
+#    - /opt/docker_containers/logstash/config:/etc/logstash/conf.d
+##  ports:
+##    - "5000:5000"
+#  links:
+#    - elasticsearch
+#  environment:
+#    - LS_HEAP_SIZE=2048m
