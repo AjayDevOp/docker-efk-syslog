@@ -2,7 +2,7 @@ FROM fluent/fluentd:latest
 USER root
 WORKDIR /home/fluent
 ENV PATH /home/fluent/.gem/ruby/2.2.0/bin:$PATH
-RUN apk --no-cache --update add geoip-dev build-base
+RUN apk --no-cache --update add geoip-dev build-base ruby-dev
 RUN fluent-gem install fluent-plugin-record-reformer
 RUN fluent-gem install fluent-plugin-rewrite
 RUN fluent-gem install fluent-plugin-parser
