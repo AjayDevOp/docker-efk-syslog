@@ -44,7 +44,9 @@
                     "dynamic": true,
                             "type": "object",
                             "properties": {
-                                  "location": { "type": "geo_point" }
+                                  "location": { "type": "geo_point" },
+                                  "dst_addr_longitude": { "type": "geo_point" },
+                                  "src_addr_longitude": { "type": "geo_point" }
                     }
                 }
             }
