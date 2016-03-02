@@ -6,7 +6,7 @@ elasticsearch:
   ports:
     - "9200:9200"
   volumes:
-    - ./elasticsearch/config:/usr/share/elasticsearch/config
+    # - ./elasticsearch/config:/usr/share/elasticsearch/config
     - ./elasticsearch/config/templates:/etc/elasticsearch/templates
     - ./elasticsearch/data:/usr/share/elasticsearch/data
 
