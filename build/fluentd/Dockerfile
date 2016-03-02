@@ -17,5 +17,6 @@ RUN fluent-gem install fluent-plugin-parser
 RUN fluent-gem install fluent-plugin-suppress
 RUN fluent-gem install fluent-plugin-mail
 RUN fluent-gem install fluent-plugin-netflow
+RUN fluent-gem install fluent-plugin-geoip
 EXPOSE 24284
 CMD fluentd -c /fluentd/etc/$FLUENTD_CONF -p /fluentd/plugins $FLUENTD_OPT
