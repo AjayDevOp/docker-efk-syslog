@@ -21,5 +21,6 @@ RUN fluent-gem install fluent-plugin-netflow
 RUN fluent-gem install fluent-plugin-geoip
 RUN fluent-gem install fluent-plugin-grep
 RUN fluent-gem install fluent-plugin-record-modifier
+RUN fluent-gem install fluent-plugin-elasticsearch-timestamp-check
 EXPOSE 24284
 CMD fluentd -c /fluentd/etc/$FLUENTD_CONF -p /fluentd/plugins $FLUENTD_OPT
