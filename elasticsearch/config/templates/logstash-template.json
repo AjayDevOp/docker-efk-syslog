@@ -5,21 +5,24 @@
 			"properties": {
 				"@timestamp": {
 					"type": "date",
-					"format": "dateOptionalTime"
+					"format": "strict_date_optional_time||epoch_millis"
 				},
 				"log_date": {
 					"type": "string"
 				},
-				"source_host": {
-					"type": "ip"
-				},
 				"message": {
+					"type": "string"
+				},
+				"msg_type": {
 					"type": "string"
 				},
 				"server_received": {
 					"type": "date",
 					"format": "yyyy-MM-dd HH:mm:ss Z",
 					"locale": "US"
+				},
+				"source_host": {
+					"type": "ip"
 				}
 			}
 		}
