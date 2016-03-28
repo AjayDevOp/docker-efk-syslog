@@ -1,6 +1,9 @@
 
 elasticsearch:
   image: elasticsearch:latest
+  log_driver: "syslog"
+  log_opt:
+    tag: "elasticsearch"
   restart: always
   command: elasticsearch -Des.network.host=0.0.0.0
   ports:
@@ -12,6 +15,9 @@ elasticsearch:
 
 kibana:
   image: kibana:latest
+  log_driver: "syslog"
+  log_opt:
+    tag: "kibana"
   restart: always
 #  volumes:
 #    - /opt/docker_containers/kibana/config:/opt/kibana/config
@@ -24,6 +30,9 @@ kibana:
 
 fluentd:
   build: build/fluentd/
+  log_driver: "syslog"
+  log_opt:
+    tag: "fluentd"
   restart: always
   cap_add:
     - NET_BIND_SERVICE
@@ -37,6 +46,9 @@ fluentd:
     
 fluentd-netflow:
   build: build/fluentd/
+  log_driver: "syslog"
+  log_opt:
+    tag: "fluentd-netflow"
   restart: always
   cap_add:
     - NET_BIND_SERVICE
