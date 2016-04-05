@@ -5,7 +5,7 @@ elasticsearch:
   log_opt:
     tag: "elasticsearch"
   restart: always
-  command: elasticsearch -Des.network.host=0.0.0.0
+  command: elasticsearch -Des.network.host=0.0.0.0 -DES_HEAP_SIZE=5g
   ports:
     - "9200:9200"
   volumes:
