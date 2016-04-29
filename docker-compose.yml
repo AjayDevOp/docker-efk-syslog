@@ -68,6 +68,6 @@ elasticsearch-curator:
   restart: always
   environment: 
     - INTERVAL_IN_HOURS=24
-    - OLDER_THAN_IN_DAYS="10"
+    - OLDER_THAN_IN_DAYS="7"
   links:
     - elasticsearch:es1
