@@ -59,3 +59,15 @@ fluentd-netflow:
     - "5550:5550/udp"
   links:
     - elasticsearch
+    
+elasticsearch-curator
+  build: visity/elasticsearch-curator
+  log_driver: "syslog"
+  log_opt:
+    tag: "elasticsearch-curator"
+  restart: always
+  environment: 
+    - INTERVAL_IN_HOURS=24
+    - OLDER_THAN_IN_DAYS="10"
+  links:
+    - elasticsearch:es1
