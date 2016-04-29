@@ -60,7 +60,7 @@ fluentd-netflow:
   links:
     - elasticsearch
     
-elasticsearch-curator
+elasticsearch-curator:
   build: visity/elasticsearch-curator
   log_driver: "syslog"
   log_opt:
