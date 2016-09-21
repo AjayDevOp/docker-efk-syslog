@@ -1,4 +1,4 @@
-# Docker-elk-syslog
+# Docker-elk-syslog (OLDER VERSION, USE docker-efk instead, will soon be deleted)
 
 1. git clone https://github.com/kkniffin/docker-efk-syslog
 2. chmod -R 777 ./elasticsearch/data
